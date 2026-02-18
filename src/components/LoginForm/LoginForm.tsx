@@ -23,7 +23,7 @@ const formSchema = z.object({
   email: z.string().trim().nonempty("Email is required"),
   password: z
     .string()
-    .min(6, "Password must be at least 8 characters.")
+    .min(6, "Password must be at least 6 characters.")
     .max(100, "Password must be at most 100 characters.")
     .nonempty("Password is required"),
 });
@@ -48,7 +48,7 @@ export default function LoginForm() {
       redirect: false,
       //! redirect: true, by default
     });
-     if (response?.ok) {
+    if (response?.ok) {
       toast.success("Logged in successfully!", {
         description: "Welcome back to Snap Cart",
         position: "top-center",

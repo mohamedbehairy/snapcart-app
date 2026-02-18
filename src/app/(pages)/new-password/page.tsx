@@ -50,7 +50,7 @@ export default function NewPassword() {
     try {
       const { ok, payload } = await ResetPassAction(email, data.newPassword);
 
-      if (ok && payload.message === "success") {
+      if (ok) {
         localStorage.removeItem("resetEmail");
 
         toast.success("Password Reset Successfully", {

@@ -44,7 +44,7 @@ export default function VerifyCode() {
     try {
       const { ok, payload } = await VerifyCodeAction(data.resetCode);
   
-      if (ok && payload.message === "success") {
+      if (ok) {
         toast.success("Code Verified Successfully", {
           description: "You can now reset your password.",
           position: "top-center",

@@ -46,7 +46,7 @@ export default function VerifyEmail() {
     try {
       const { ok, payload } = await ForgotPassAction(data.email);
 
-      if (ok && payload.message === "success") {
+      if (ok) {
         localStorage.setItem("resetEmail", data.email);
 
         toast.success("Code Sent Successfully", {

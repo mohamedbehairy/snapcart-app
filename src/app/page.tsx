@@ -25,7 +25,10 @@ export default function Home() {
             <div className="flex-1 text-center lg:text-left space-y-6">
               <Badge className="w-fit mx-auto lg:mx-0 px-4 py-1 bg-primary/10 text-primary hover:bg-primary/20">
                 <Sparkles className="mr-2 h-4 w-4" />
-                New Arrivals {typeof window !== 'undefined' ? new Date().getFullYear() : 2024}
+                New Arrivals{" "}
+                {typeof window !== "undefined"
+                  ? new Date().getFullYear()
+                  : 2024}
               </Badge>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
