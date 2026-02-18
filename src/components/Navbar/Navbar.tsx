@@ -159,8 +159,8 @@ export default function Navbar() {
                     <DropdownMenuItem
                       className="cursor-pointer"
                       onClick={() => {
-                        localStorage.removeItem("userId");
-
+                        // Clear all localStorage data before logout
+                        localStorage.clear();
                         signOut({
                           callbackUrl: "/",
                         });
