@@ -1,26 +1,155 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@utility container {
+  margin-inline: auto;
 }
+
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.75rem;
+
+  --background: #f8f6f2; /* warm off-white */
+  --foreground: #2b1f17; /* dark brown text */
+
+  --card: #efe9e3;
+  --card-foreground: #2b1f17;
+
+  --popover: #efe9e3;
+  --popover-foreground: #2b1f17;
+
+  /* 🌰 MAIN BROWN */
+  --primary: #8b6a4f;
+  --primary-foreground: #fffaf6;
+
+  /* soft beige */
+  --secondary: #d8cbbf;
+  --secondary-foreground: #2b1f17;
+
+  --muted: #b9ab9f;
+  --muted-foreground: #6f6258;
+
+  --accent: #a8845b; /* caramel brown */
+  --accent-foreground: #fffaf6;
+
+  --destructive: #c2410c;
+
+  --border: #ddd4ca;
+  --input: #f4f1ec;
+  --ring: #8b6a4f;
+
+  /* charts (warm scale) */
+  --chart-1: #8b6a4f;
+  --chart-2: #a8845b;
+  --chart-3: #d8cbbf;
+  --chart-4: #efe9e3;
+  --chart-5: #6f6258;
+
+  /* sidebar */
+  --sidebar: #efe9e3;
+  --sidebar-foreground: #2b1f17;
+  --sidebar-primary: #8b6a4f;
+  --sidebar-primary-foreground: #fffaf6;
+  --sidebar-accent: #a8845b;
+  --sidebar-accent-foreground: #fffaf6;
+  --sidebar-border: #ddd4ca;
+  --sidebar-ring: #8b6a4f;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  :where(input, textarea, select, button) {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* 🎨 Selection Styling */
+  ::selection {
+    background-color: #8b6a4f; /* primary brown */
+    color: #fffaf6; /* light cream text */
+  }
+
+  ::-moz-selection {
+    background-color: #8b6a4f;
+    color: #fffaf6;
+  }
+
+  /* 📜 Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f4f1ec; /* light beige background */
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #a8845b; /* caramel brown */
+    border-radius: 10px;
+    border: 2px solid #f4f1ec; /* creates padding effect */
+    transition: background 0.3s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8b6a4f; /* darker brown on hover */
+  }
+
+  ::-webkit-scrollbar-thumb:active {
+    background: #6f5a43; /* even darker when clicking */
+  }
+
+  /* For Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #a8845b #f4f1ec;
+  }
+
+  /* 🌙 Smooth Scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
 }

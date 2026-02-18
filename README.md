@@ -1,36 +1,255 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SnapCart
 
-## Getting Started
+A modern e-commerce application built with Next.js, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+---
+
+## Overview
+
+SnapCart is a full-featured e-commerce frontend that integrates with an external REST API to deliver a complete shopping experience. Built with modern web technologies, it demonstrates best practices in:
+
+- Server & Client Component separation (App Router)
+- Server Actions for secure mutations
+- NextAuth for authentication
+- Modular component architecture
+- Feature-based structure
+- Pagination (API + UI controlled)
+- Middleware route protection
+- Order management system
+
+The project is structured for scalability and maintainability while keeping UI performance optimized.
+
+---
+
+## Tech Stack
+
+### Core Framework
+
+| Technology | Version | Purpose                         |
+| ---------- | ------- | ------------------------------- |
+| Next.js    | 16.1.6  | React framework with App Router |
+| React      | 19.2.3  | UI library                      |
+| TypeScript | 5.x     | Type-safe JavaScript            |
+
+### Styling & UI
+
+| Technology   | Purpose                         |
+| ------------ | ------------------------------- |
+| Tailwind CSS | Utility-first CSS framework     |
+| shadcn/ui    | Modern React component library  |
+| Radix UI     | Unstyled, accessible components |
+| Lucide       | Icon library                    |
+
+### Forms & Validation
+
+| Technology          | Purpose                     |
+| ------------------- | --------------------------- |
+| React Hook Form     | Form management             |
+| Zod                 | Schema validation           |
+| @hookform/resolvers | Form validation integration |
+
+### Authentication
+
+| Technology | Purpose              |
+| ---------- | -------------------- |
+| NextAuth   | Credentials provider |
+| Middleware | Route protection     |
+
+### Data & API
+
+| Technology        | Purpose                   |
+| ----------------- | ------------------------- |
+| External REST API | Product, cart, order data |
+| Server Actions    | Secure mutations          |
+| Route Handlers    | API endpoints             |
+| Fetch API         | HTTP client               |
+
+### Utilities & Tooling
+
+| Technology     | Purpose                      |
+| -------------- | ---------------------------- |
+| ESLint         | Code linting                 |
+| PostCSS        | CSS processing               |
+| Tailwind Merge | Utility class merging        |
+| CVA            | Component variant management |
+
+---
+
+## Architecture
+
+### Folder Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+src/
+├── app/
+│   ├── (pages)/          # Route groups for organization
+│   ├── api/              # API routes
+│   ├── layout.tsx        # Root layout
+│   └── page.tsx          # Home page
+├── components/
+│   ├── ui/               # shadcn/ui components
+│   ├── Cart/             # Shopping cart
+│   ├── AddToCart/        # Cart functionality
+│   ├── Wishlist/         # Wishlist management
+│   └── ...              # Other features
+├── actions/              # Server Actions
+├── interfaces/           # TypeScript types
+├── helpers/             # Utility functions
+├── lib/                 # Library configs
+└── auth.ts              # NextAuth config
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Architectural Decisions
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Decision          | Rationale                                     |
+| ----------------- | --------------------------------------------- |
+| App Router        | Server-first rendering and layout composition |
+| Server Components | Optimal data fetching and SEO                 |
+| Client Components | Interactive logic and state management        |
+| Server Actions    | Secure mutations and form handling            |
+| Middleware        | Route protection and authentication           |
+| Feature-based     | Maintainability and scalability               |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+### Products
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Paginated product listing with metadata
+- Dynamic product details page
+- Rating display system with reviews
+- Stock awareness and availability
+- Brand & category filtering
+- Advanced sorting options
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Pagination
 
-## Deploy on Vercel
+- API-driven pagination metadata
+- Reusable pagination component
+- Client-side slicing when needed
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Shopping Cart
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Add/remove/update items
+- Server-synced cart state
+- Automatic total calculation
+- Persistent user cart
+
+### Wishlist
+
+- Add/remove products
+- User-specific wishlist
+- Quick add-to-cart support
+
+### Authentication
+
+- Registration & Login
+- Session handling via NextAuth
+- Credentials provider
+- Middleware route protection
+- Password recovery flow
+
+### Order Management
+
+- Order history
+- Order details
+- Order status tracking
+- Order cancellation (API dependent)
+
+### Performance
+
+- Server-rendered product pages
+- Image optimization with Next/Image
+- Lazy loading for better UX
+- Route-based code splitting
+
+---
+
+## Internal Flow
+
+### Data Fetching
+
+1. Server Components fetch product/category data
+2. Client Components use Server Actions
+3. Middleware protects sensitive routes
+4. Dynamic requests use `cache: "no-store"`
+
+### Rendering Process
+
+1. Server renders initial content
+2. Client hydrates interactive components
+3. Server Actions trigger revalidation
+4. State updates refresh UI
+
+### State Management
+
+| Layer          | Technology     | Purpose               |
+| -------------- | -------------- | --------------------- |
+| Authentication | NextAuth       | Session provider      |
+| Cart/Wishlist  | Server Actions | Server-synced state   |
+| UI State       | React          | Local component state |
+
+---
+
+## Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+# API Configuration
+API_URL=https://ecommerce.routemisr.com
+
+# Authentication
+AUTH_SECRET=your-secret-key-here
+
+# Application
+BASE_URL=http://localhost:3000
+```
+
+These variables are required for API communication and authentication security.
+
+---
+
+## Scripts
+
+```bash
+# Development
+npm run dev          # Start dev server with hot reload
+
+# Production
+npm run build         # Build for production
+npm run start         # Start production server
+
+# Quality
+npm run lint          # Run ESLint
+```
+
+---
+
+## Installation & Setup
+
+### Prerequisites
+
+- Node.js 18.x or higher
+- npm, yarn, or pnpm
+
+### Quick Start
+
+```bash
+# 1. Clone the repository
+git clone <repository-url>
+cd snapcart
+
+# 2. Install dependencies
+npm install
+
+# 3. Setup environment variables
+cp .env.example .env.local
+# Edit .env.local with your values
+
+# 4. Run development server
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) to view the application.
