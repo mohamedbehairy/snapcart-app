@@ -81,7 +81,7 @@ export async function createVisaOrderAction(
 
   try {
     const response = await fetch(
-      `${process.env.API_URL}/api/v1/orders/checkout-session/${cartId}`,
+      `${process.env.API_URL}/api/v1/orders/checkout-session/${cartId}?url=${process.env.BASE_URL}`,
       {
         method: "POST",
         headers: {

@@ -1,4 +1,4 @@
-import SessionContext from "@/components/SessionContext/SessionContext";
+import SessionContext from "@/contexts/SessionContext/SessionContext";
 import type { Metadata } from "next";
 import "./globals.css";
 
