@@ -26,7 +26,7 @@ export default function Navbar() {
     if (!session) return;
     try {
       const { data, ok } = await getCartAction();
- 
+
       if (ok) {
         setCartNumbers(data?.numOfCartItems ?? 0);
 
@@ -159,6 +159,8 @@ export default function Navbar() {
                     <DropdownMenuItem
                       className="cursor-pointer"
                       onClick={() => {
+                        localStorage.removeItem("userId");
+
                         signOut({
                           callbackUrl: "/",
                         });
