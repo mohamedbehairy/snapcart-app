@@ -1,5 +1,5 @@
 //^ may be rename to proxy.ts in the future
-// @ here not client and not server
+//@ here not client and not server
 
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";

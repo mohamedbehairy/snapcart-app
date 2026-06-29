@@ -23,7 +23,6 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon2.ico",
   },
- 
 };
 
 export default function RootLayout({

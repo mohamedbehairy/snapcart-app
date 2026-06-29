@@ -3,18 +3,16 @@ import AddToCart from "@/components/AddToCart/AddToCart";
 import AddToWishlist from "@/components/AddtoWishlist/AddtoWishlist";
 import Slider from "@/components/Slider/Slider";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { formatPrice } from "@/Helpers/formatPrice";
 import { Product } from "@/interfaces/productInterfaces";
 import {
   AlertCircle,
-  Heart,
   RefreshCw,
   Shield,
   Star,
-  Truck,
+  Truck
 } from "lucide-react";
 import { Params } from "next/dist/server/request/params";
-import { formatPrice } from "@/Helpers/formatPrice";
 
 export default async function ProductDetails({ params }: { params: Params }) {
   const { productsId } = await params;

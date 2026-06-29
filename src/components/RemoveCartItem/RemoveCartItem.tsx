@@ -21,7 +21,7 @@ export default function RemoveCartItem({
       setIsLoading(true);
 
       const { data, ok, status } = await RemoveCartItemAction(productId);
- 
+
       if (ok) {
         dispatchEvent(
           new CustomEvent("cartUpdated", { detail: data.numOfCartItems }),

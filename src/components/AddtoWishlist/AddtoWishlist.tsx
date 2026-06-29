@@ -29,7 +29,7 @@ export default function AddToWishlist({
 
   const isLiked = wishlistProducts.some(product => product._id === productId);
 
-  // ✅ Fetch wishlist with caching mechanism
+  //  Fetch wishlist with caching mechanism
   async function fetchWishlist() {
     const now = Date.now();
     

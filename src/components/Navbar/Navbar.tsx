@@ -91,11 +91,10 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className={`px-3 py-2 rounded-lg transition-colors whitespace-nowrap ${
-                isActive(link.href)
+              className={`px-3 py-2 rounded-lg transition-colors whitespace-nowrap ${isActive(link.href)
                   ? "bg-card text-black font-medium"
                   : "hover:bg-card text-muted-foreground"
-              }`}
+                }`}
             >
               {link.label}
             </Link>
@@ -203,11 +202,10 @@ export default function Navbar() {
                   <DropdownMenuItem key={link.href} asChild>
                     <Link
                       href={link.href}
-                      className={`cursor-pointer px-3 py-2 rounded-lg transition-colors ${
-                        isActive(link.href)
+                      className={`cursor-pointer px-3 py-2 rounded-lg transition-colors ${isActive(link.href)
                           ? "bg-accent text-black"
                           : "hover:bg-card text-foreground"
-                      }`}
+                        }`}
                     >
                       {link.label}
                     </Link>

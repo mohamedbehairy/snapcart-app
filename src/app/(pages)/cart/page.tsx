@@ -24,7 +24,7 @@ export default async function CartPage() {
 
     if (response.ok) {
       cartData = await response.json();
-     }
+    }
   } catch (error) {
     console.error("Error fetching cart data:", error);
   }
